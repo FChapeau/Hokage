@@ -1,7 +1,13 @@
+var webpack = require('webpack');
+var VendorChunkPlugin = require('webpack-vendor-chunk-plugin');
+
 module.exports = [{
-    entry: "./client/index.tsx",
+    entry: {
+        app : "./client/index.tsx",
+        vendor: ['react']
+    },
     output: {
-        filename: "./public/bundle.js",
+        filename: "./public/[name].js",
     },
 
     // Enable sourcemaps for debugging webpack's output.
@@ -23,13 +29,14 @@ module.exports = [{
             { test: /\.js$/, loader: "source-map-loader" }
         ]
     },
+    plugins:[
+        new webpack.optimize.CommonsChunkPlugin('vendor', './public/vendor.js'),
+        new VendorChunkPlugin('vendor')
+    ],
 
     // When importing a module whose path matches one of the following, just
     // assume a corresponding global variable exists and use that instead.
     // This is important because it allows us to avoid bundling all of our
     // dependencies, which allows browsers to cache those libraries between builds.
-    // externals: {
-    //     "react": "React",
-    //     "react-dom": "ReactDOM"
-    // },
+
 }];
