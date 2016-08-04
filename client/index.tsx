@@ -4,26 +4,47 @@
 ///<reference path="../typings/index.d.ts"/>
 
 import {SummaryCard} from "./components/summaryCard";
+import {Dashboard} from "./components/routeComponents/dashboard";
 import {render} from "react-dom";
 import * as React from "react";
 import {Router, Route, IndexLink, Link, hashHistory, IndexRoute} from "react-router";
 import {MuiThemeProvider, getMuiTheme, lightBaseTheme} from "material-ui/styles";
 
-class App extends React.Component <any, any> {
-    render() {
+interface AppState {
+    status: number;
+}
+
+class App extends React.Component <any, AppState> {
+
+    constructor (props: any) {
+        super(props);
+        this.state = {status: 0};
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    public handleChange(event) {
+        this.setState( {status: parseInt(event.target.value)});
+    }
+
+    public render() {
         return (
             <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
                 <div>
-                    <Nav/>
+                    <SideNav/>
                     {this.props.children}
-                    <SummaryCard title="Test"/>
+                    <input
+                        type="number"
+                        value={this.state.status}
+                        onChange={this.handleChange}
+                        />
+                    <SummaryCard title="Hello" status={this.state.status}/>
                 </div>
             </MuiThemeProvider>
         );
     }
 }
 
-class Nav extends React.Component<any, any> {
+class SideNav extends React.Component<any, any> {
     render() {
         return(
             <div>
@@ -46,56 +67,14 @@ class Nav extends React.Component<any, any> {
     }
 }
 
-class About extends React.Component<any, any> {
-    render() {
-        return (
-        <div>
-            <h1>About</h1>
-        </div>);
-    }
-}
-
-class Contact extends React.Component<any, any> {
-    render() {
-        return (
-        <div>
-            <h1>Contact</h1>
-        </div>);
-    }
-}
-
-class Mission extends React.Component<any, any>{
-    render() {
-        return (
-            <div>
-                <h1>Mission</h1>
-            </div>
-        );
-    }
-}
-
-class Home extends React.Component<any, any> {
-    render() {
-        return (
-          <div>
-              <h1>Home</h1>
-          </div>
-        );
-    }
-}
-
 render(
     <div>
         <h1>Test</h1>
 
         <Router history={hashHistory}>
             <Route path="/" component={App} >
-                <IndexRoute component={Home}/>
-                <Route path="/about" component={About}/>
-                <Route path="/contact" component={Contact} />
-                <Route path="/mission" component={Mission}/>
+                <IndexRoute component={Dashboard}/>
             </Route>
-
         </Router>
     </div>,
     document.getElementById("content")
