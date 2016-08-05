@@ -29,6 +29,7 @@
     "gulp": "^3.9.1",
     "gulp-tslint": "^6.0.2",
     "gulp-util": "^3.0.7",
+    "gulp-webpack": "^1.5.0",
     "source-map-loader": "^0.1.5",
     "ts-loader": "^0.8.2",
     "tslint": "^3.14.0",
