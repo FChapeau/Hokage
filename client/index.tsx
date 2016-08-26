@@ -9,6 +9,7 @@ import {render} from "react-dom";
 import * as React from "react";
 import {Router, Route, IndexLink, Link, hashHistory, IndexRoute} from "react-router";
 import {MuiThemeProvider, getMuiTheme, lightBaseTheme} from "material-ui/styles";
+import {Layout} from "./layout";
 
 interface AppState {
     status: number;
@@ -69,10 +70,8 @@ class SideNav extends React.Component<any, any> {
 
 render(
     <div>
-        <h1>Test</h1>
-
         <Router history={hashHistory}>
-            <Route path="/" component={App} >
+            <Route path="/" component={Layout} >
                 <IndexRoute component={Dashboard}/>
             </Route>
         </Router>
