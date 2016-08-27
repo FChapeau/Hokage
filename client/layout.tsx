@@ -5,7 +5,7 @@ import * as React from "react";
 import {SideDrawer} from "./components/sideDrawer";
 import {MuiThemeProvider} from "material-ui/styles";
 import {AppBar, IconButton} from "material-ui";
-import {NavigationClose} from "material-ui/svg-icons";
+import {NavigationClose, NavigationMenu} from "material-ui/svg-icons";
 
 export interface LayoutProps {
 
@@ -36,7 +36,7 @@ export class Layout extends React.Component <LayoutProps, LayoutState> {
                 <div>
                     <div>
                         <AppBar title="Hokage" iconElementLeft={
-                            <IconButton onClick={this.toggleSideDrawer}><NavigationClose/></IconButton>
+                            <IconButton onClick={this.toggleSideDrawer}><NavigationMenu/></IconButton>
                         } />
                     </div>
                     <div>
