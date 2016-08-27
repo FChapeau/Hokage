@@ -40,7 +40,7 @@ export class Layout extends React.Component <LayoutProps, LayoutState> {
                         } />
                     </div>
                     <div>
-                        <SideDrawer open={this.state.drawerOpen}/>
+                        <SideDrawer open={this.state.drawerOpen} openToggleCallback={this.toggleSideDrawer}/>
                         {this.props.children}
                     </div>
                 </div>

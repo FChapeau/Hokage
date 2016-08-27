@@ -7,6 +7,7 @@ import {NavigationClose} from "material-ui/svg-icons";
 
 export interface DrawerProps {
     open: boolean;
+    openToggleCallback: (event :Object) => void;
 }
 
 export interface DrawerState {
@@ -16,17 +17,17 @@ export interface DrawerState {
 export class SideDrawer extends React.Component<DrawerProps, DrawerState> {
     constructor (props: DrawerProps) {
         super (props);
-        this.state = {open: false};
+        this.state = {open: this.props.open};
     }
 
     render() {
         return(
             <Drawer open={this.props.open} docked={false} onRequestChange={function(openState, reason)
             {
-                this.setState({open: openState});
-            }}>
+                this.props.openToggleCallback();
+            }.bind(this) }>
                 <AppBar iconElementLeft={
-                    <IconButton onClick={() => this.setState({open: !this.state.open } ) } ><NavigationClose/></IconButton>
+                    <IconButton onClick={this.props.openToggleCallback} ><NavigationClose/></IconButton>
                 } />
                 <MenuItem>Hello</MenuItem>
                 <MenuItem>World!</MenuItem>
