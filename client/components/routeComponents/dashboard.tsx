@@ -5,7 +5,7 @@ import {SummaryCard} from "../summaryCard";
 export class Dashboard extends React.Component<any, any> {
     render() {
         return(
-            <div>
+            <div style={{paddingLeft: "10", paddingRight: "10"}}>
                 <h1>This will be the dashboard</h1>
                 <br/>
                 <SummaryCard status={0} title={"Hello world!"}/>
