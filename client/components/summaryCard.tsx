@@ -6,10 +6,11 @@ import {Card, CardTitle, CardText, CardHeader} from "material-ui/Card";
 import {RaisedButton, Avatar} from "material-ui";
 import {red900, green500, amber500, deepPurple500 as Purple, white} from "material-ui/styles/colors";
 import {Chip} from "material-ui";
-
+//
 const styles = {
     card: {
-        width: "400px"
+        width: "400px",
+        margin: "0 0.5em 0 0.5em"
     },
     wrapper: {
         display: "flex",
